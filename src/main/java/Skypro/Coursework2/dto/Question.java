@@ -1,4 +1,4 @@
-package Skypro.Coursework2;
+package Skypro.Coursework2.dto;
 
 import java.util.Objects;
 

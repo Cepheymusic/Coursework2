@@ -1,6 +1,6 @@
 package Skypro.Coursework2.controller;
 
-import Skypro.Coursework2.Question;
+import Skypro.Coursework2.dto.Question;
 import Skypro.Coursework2.service.ExaminerService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

@@ -1,9 +1,13 @@
 package Skypro.Coursework2.service;
 
-import Skypro.Coursework2.Question;
+import Skypro.Coursework2.dto.Question;
+import Skypro.Coursework2.exception.NotEnoughQuestions;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
 public class ExaminerServiceImpl implements ExaminerService {
     private final QuestionService questionService;
@@ -12,7 +16,13 @@ public class ExaminerServiceImpl implements ExaminerService {
     }
     @Override
     public Collection<Question> getQuestions(int amount) {
-        return null;
+        Set<Question> questionSet = new HashSet<>();
+        if (questionService.getAll().size() < amount) {
+            throw new NotEnoughQuestions();
+        }
+        while (questionSet.size() < amount) {
+            questionSet.add(questionService.getRandomQuestion());
+        }
+        return questionSet;
     }
-
 }

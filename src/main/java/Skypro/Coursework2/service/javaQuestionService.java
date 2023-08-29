@@ -1,6 +1,6 @@
 package Skypro.Coursework2.service;
 
-import Skypro.Coursework2.Question;
+import Skypro.Coursework2.dto.Question;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -14,9 +14,9 @@ public class javaQuestionService implements QuestionService {
     }
     @Override
     public Question add(String question, String answer) {
-        var result = new Question(question, answer);
-        questions.add(result);
-        return result;
+        var questionEntity = new Question(question, answer);
+        add(questionEntity);
+        return questionEntity;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class javaQuestionService implements QuestionService {
 
     @Override
     public Collection<Question> getAll() {
-        return questions;  // как метод вернёт всех их хэшсет?
+        return questions;
     }
 
     @Override
