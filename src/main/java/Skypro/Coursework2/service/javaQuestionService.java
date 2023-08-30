@@ -14,9 +14,7 @@ public class javaQuestionService implements QuestionService {
     }
     @Override
     public Question add(String question, String answer) {
-        var questionEntity = new Question(question, answer);
-        add(questionEntity);
-        return questionEntity;
+        return add(new Question(question, answer));
     }
 
     @Override
@@ -38,11 +36,6 @@ public class javaQuestionService implements QuestionService {
 
     @Override
     public Question getRandomQuestion() {
-        int index = rmd.nextInt(questions.size());
-        Iterator<Question> iter = questions.iterator();
-        for (int i = 0; i < index; i++) {
-            iter.next();
-        }
-        return iter.next();
+        return new ArrayList<>(questions).get(rmd.nextInt(questions.size()));
     }
 }
