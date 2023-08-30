@@ -37,5 +37,16 @@ class javaQuestionServiceTest {
         Collection<Question> result = underTest.getAll();
         assertTrue(result.containsAll(Set.of(question1, question2)));
     }
+    @Test
+    void getAll_questionsAreNotInSet_setWithoutQuestionReturned() {
+        Collection<Question> result = underTest.getAll();
+        assertFalse(result.containsAll(Set.of(question1, question2)));
+    }
 
+    @Test
+    void getRandomQuestion_questionInSet_questionReturn() {
+        underTest.add(question1);
+        Question result = underTest.getRandomQuestion();
+        assertEquals(question1, result);
+    }
 }
