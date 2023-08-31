@@ -1,9 +1,11 @@
 package Skypro.Coursework2.service;
 
 import Skypro.Coursework2.dto.Question;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,7 +15,11 @@ class JavaQuestionServiceTest {
 
     Question question1 = new Question("w", "q");
     Question question2 = new Question("d", "g");
-
+    Set<Question> questions;
+    @BeforeEach
+    void beforeEach() {
+        questions = new HashSet<>(Set.of(question1, question2));
+    }
     @Test
     void add__questionAddedAndReturn() {
         Question result = underTest.add(question1.getQuestion(), question1.getAnswer());
@@ -48,6 +54,6 @@ class JavaQuestionServiceTest {
         underTest.add(question1);
         underTest.add(question2);
         Question result = underTest.getRandomQuestion();
-        assertEquals(question1, result);
+        assertTrue(result.(question1, question2));
     }
 }
