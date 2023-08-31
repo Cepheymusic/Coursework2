@@ -8,8 +8,8 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class javaQuestionServiceTest {
-    javaQuestionService underTest = new javaQuestionService();
+class JavaQuestionServiceTest {
+    JavaQuestionService underTest = new JavaQuestionService();
 
     Question question1 = new Question("w", "q");
     Question question2 = new Question("d", "g");
@@ -40,12 +40,13 @@ class javaQuestionServiceTest {
     @Test
     void getAll_questionsAreNotInSet_setWithoutQuestionReturned() {
         Collection<Question> result = underTest.getAll();
-        assertFalse(result.containsAll(Set.of(question1, question2)));
+        assertFalse(result.isEmpty());
     }
 
     @Test
     void getRandomQuestion_questionInSet_questionReturn() {
         underTest.add(question1);
+        underTest.add(question2);
         Question result = underTest.getRandomQuestion();
         assertEquals(question1, result);
     }

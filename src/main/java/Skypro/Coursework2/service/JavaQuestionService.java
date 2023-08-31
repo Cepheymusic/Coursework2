@@ -5,11 +5,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 @Service
-public class javaQuestionService implements QuestionService {
+public class JavaQuestionService implements QuestionService {
     private final Set<Question> questions;
     private final Random rmd = new Random();
 
-    public javaQuestionService() {
+    public JavaQuestionService() {
         this.questions = new HashSet<>();
     }
     @Override
