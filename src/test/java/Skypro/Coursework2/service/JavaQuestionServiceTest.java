@@ -54,6 +54,6 @@ class JavaQuestionServiceTest {
         underTest.add(question1);
         underTest.add(question2);
         Question result = underTest.getRandomQuestion();
-        assertTrue(result.(question1, question2));
+        assertTrue(underTest.getAll().contains(result));
     }
 }

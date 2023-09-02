@@ -10,6 +10,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,6 +25,7 @@ class ExaminerServiceImplTest {
     Question question = new Question("r", "y");
     Question question1 = new Question("w", "q");
     Question question2 = new Question("d", "g");
+    Collection<Question> questions = new HashSet<>(Set.of(question, question1,question2));
     @Test
     void getQuestions_enoughQuestionsInList_setOfQuestionsReturned() {
         int amount = 2;
@@ -35,17 +37,18 @@ class ExaminerServiceImplTest {
     }
     @Test
     void getQuestions_enoughQuestionsNotInList_setWithoutQuestionsReturned() {
-        int amount = 1;
+        int amount = 2;
         when(questionService.getAll()).thenReturn(Set.of(question));
         NotEnoughQuestions result =
                 assertThrows(NotEnoughQuestions.class, () -> underTest.getQuestions(amount));
-        assertEquals("Not questions is collection", result);
+        assertEquals("Not questions is collection", result.getMessage());
     }
     @Test
     void getQuestion_getRandomQuestions_questionsReturn() {
         int amount = 2;
+        when(questionService.getAll()).thenReturn(questions);
         when(questionService.getRandomQuestion()).thenReturn(question, question1, question2);
         Collection<Question> result = underTest.getQuestions(amount);
-        assertEquals(amount, result.size());
+        assertTrue(result.containsAll(Set.of(question, question1)));
     }
 }

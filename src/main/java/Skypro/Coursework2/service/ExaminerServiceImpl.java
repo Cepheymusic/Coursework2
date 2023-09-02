@@ -18,7 +18,7 @@ public class ExaminerServiceImpl implements ExaminerService {
     public Collection<Question> getQuestions(int amount) {
         Set<Question> questionSet = new HashSet<>();
         if (questionService.getAll().size() < amount) {
-            throw new NotEnoughQuestions();
+            throw new NotEnoughQuestions("Not questions is collection");
         }
         while (questionSet.size() < amount) {
             questionSet.add(questionService.getRandomQuestion());
